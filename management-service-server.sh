@@ -25,15 +25,13 @@ biru_c='\033[1;34m'
 kun_c='\033[1;33m'
 N='\033[00m'
 
-if [[ $(id -u) == 0 ]];
+if [[ $(id -u) != 0 ]];
     then
-        sleep 0.1
-    else
         echo -e $merah"please run $(basename $0) as administrator (sudo)$N"
         exit
 fi
 
-PS3="$(basename $0) =>"
+PS3="$(basename $0) => "
 config="conf/service.list"
 
 if [[ -f $config ]]; then
@@ -114,7 +112,7 @@ add(){
         else
             if [[ -f "/usr/lib/systemd/system/$name_service.service" ]]; then
                 echo "$name_service" >> $config
-                echo -e $hijau_c"Add $service_name Succes !!! $N"
+                echo -e $hijau_c"Add $name_service Succes !!! $N"
                 read -p "back to menu ..." back
                 $0
             else

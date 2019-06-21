@@ -1,4 +1,3 @@
-httpd
 mariadb
 tor
-samba
+apache2
